@@ -1,0 +1,79 @@
+
+Tables:
+ Source for data:
+•	 Video_Game.csv from https://www.kaggle.com/datasets/thedevastator/global-video-game-sales-and-reviews
+•	 PopularGames data from https://www.kaggle.com/datasets/arnabchaki/popular-video-games-1980-2023
+•	Games.csv data from https://www.kaggle.com/datasets/tamber/steam-video-games
+The table below has a breakdown of what data comes from each source. Data from bullet point number 1 comes from 'Video_Games.csv', 2 from 'PopularGames.csv', 3 from 'Games.csv'
+☒ Game Description: title, console, releaseYear (foreign key), publisher, genre, summary, criticScore
+1.	Name, platform, publisher, genre, developer
+2.	Title, team?, genres, summary
+3.	Name, console
+☒ Reviews: title, criticScore, userScore, criticScoreCount, userScoreCount, contentRating, userReview
+1.	Name, critic score (/100), user score (/10), critic count, user count, rating (content, ex. E for everyone), ~
+2.	Title, ~, rating (user, /5), ~, number of reviews, ~, reviews (word review)
+3.	Game name, score (early access/critic review, /10), ~ , ~ ,~,~,~,~,~
+For consistency, all critic and user scores are converted to /10, 10/10 being the best possible score
+☒  Sales: title, releaseYear, globalSales, publisher (foreign key)
+1.	Name, year of release (foreign key), Global sales, publisher (foreign key)
+☒ Popularity: title, userCount, plays, backlogs, wishlistCount
+1.	Name, user count, ~, ~, ~
+2.	Title, ~, Plays, backlogs, wishlist
+
+Raw datasets:
+Video_Games.csv
+	Name, platform, release, sales, critic score, Developer, rating
+Games.csv
+	Platform, name, review, score
+PopularGames.csv
+	Title, title, release date, summary, reviews, wishlist, r
+
+Designing a good SQL database structure for organizing data related to video games involves identifying the key entities, their attributes, and the relationships between them. Here's a basic outline for a video game database structure:
+1: ['index', 'Name', 'Platform', 'Year_of_Release', 'Genre', 'Publisher', 'NA_Sales', 'EU_Sales', 'JP_Sales', 'Other_Sales', 'Global_Sales', 'Critic_Score', 'Critic_Count', 'User_Score', 'User_Count', 'Developer', 'Rating']
+
+2: ['Unnamed: 0', 'Title', 'Release Date', 'Team', 'Rating', 'Times Listed', 'Number of Reviews', 'Genres', 'Summary', 'Reviews', 'Plays', 'Playing', 'Backlogs', 'Wishlist']
+
+3: Console', 'GameName', 'Review', 'Score']
+
+
+Draft Ideas
+Tables:
+
+a. Games Table:
+- Attributes:
+- game_id (Primary Key)
+- title
+- release_date
+- popularity_score
+- developer_id (Foreign Key referencing Developers Table)
+- platform_id (Foreign Key referencing Platforms Table)
+
+b. Platforms Table:
+- Attributes:
+- platform_id (Primary Key)
+- platform_name
+
+c. Developers Table:
+- Attributes:
+- developer_id (Primary Key)
+- developer_name
+
+d. Sales Table:
+- Attributes:
+- sale_id (Primary Key)
+- game_id (Foreign Key referencing Games Table)
+- sale_date
+- units_sold
+- revenue
+
+e. Reviews Table:
+- Attributes:
+- review_id (Primary Key)
+- game_id (Foreign Key referencing Games Table)
+- reviewer_name
+- review_date
+- rating
+- comment
+
+
+
