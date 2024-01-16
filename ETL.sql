@@ -74,3 +74,60 @@ FROM [videoGames].[dbo].[VideoGamesInfo]
 ORDER BY [Title] -- Replace [YourOrderByColumn] with the column you want to order by
 OFFSET 1000 ROWS
 FETCH NEXT 1000 ROWS ONLY;
+
+-- Drop VideoGamesReviews
+DROP TABLE VideoGameReviews;
+
+-- Creating GamReviews
+CREATE TABLE VideoGameReviews (
+	title VARCHAR(255),
+	criticScore REAL NULL,
+	userScore REAL NULL,
+	criticScoreCount INT NULL,
+	userScoreCount INT NULL,
+	contentRating VARCHAR(50) NULL,
+	-- userReview VARCHAR(8000) NULL, --Truly needed almost all 8000 characters for some of the reviews
+	userReview TEXT NULL,
+)
+
+-- Select top 1000 from VideoGameReviews
+SELECT TOP (1000) [title]
+      ,[criticScore]
+      ,[userScore]
+      ,[criticScoreCount]
+      ,[userScoreCount]
+      ,[contentRating]
+      ,[userReview]
+  FROM [videoGames].[dbo].[VideoGameReviews]
+
+-- Creating Game Popularity table
+CREATE TABLE VideoGamePopularity (
+	title VARCHAR(255),
+	userCount INT NULL,
+	plays INT NULL,
+	backlogs INT NULL,
+	wishlist INT NULL,
+)
+
+-- Top 1000 entreis from VideoGamePopularity
+SELECT TOP (1000) [title]
+      ,[userCount]
+      ,[plays]
+      ,[backlogs]
+      ,[wishlist]
+  FROM [videoGames].[dbo].[VideoGamePopularity]
+
+-- Create Video Game Sales
+CREATE TABLE VideoGameSales (
+	title VARCHAR(255),
+	releaseYear INT NULL,
+	globalSales REAL NULL,
+	publisher VARCHAR(255) NULL,
+)
+
+-- Select top 1000 from videoGameSales
+SELECT TOP (1000) [title]
+      ,[releaseYear]
+      ,[globalSales]
+      ,[publisher]
+  FROM [videoGames].[dbo].[VideoGameSales]
